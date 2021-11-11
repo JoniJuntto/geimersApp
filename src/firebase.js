@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react";
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword  } from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCZmBhh_T5G00xIhViVXWYAkU7_MSM73B0",
-  authDomain: "geimersdata.firebaseapp.com",
-  projectId: "geimersdata",
-  storageBucket: "geimersdata.appspot.com",
-  messagingSenderId: "585275162108",
-  appId: "1:585275162108:web:fb9c875edd035377d34679",
-  measurementId: "G-GEN31631XD"
+  apiKey: "AIzaSyDUEt20YobHR_-wlglh2lyeoSwYf2je6e4",
+  authDomain: "devgeimers.firebaseapp.com",
+  projectId: "devgeimers",
+  storageBucket: "devgeimers.appspot.com",
+  messagingSenderId: "778283626275",
+  appId: "1:778283626275:web:b223ffcf087ae37214a696"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export default getFirestore();
-const auth = getAuth();
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+export {auth, db}
 
 export function signup(email, password){
   createUserWithEmailAndPassword(auth, email, password);

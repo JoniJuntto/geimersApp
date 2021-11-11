@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
 import { Paper } from '@material-ui/core';
-import db from "./firebase";
-import { signup, useAuth, logout, login } from "./firebase";
-import { collection, addDoc, setDoc, doc, getDoc, onSnapshot } from "@firebase/firestore";
+import { useAuth,db } from "./firebase";
+import { collection, setDoc, doc, getDoc, onSnapshot } from "@firebase/firestore";
 
 function TinderCards() {
   const [people, setPeople] = useState([]);
-  const [person, setPerson] = useState([]);
   const currentUser = useAuth();
 
   useEffect(
@@ -58,7 +56,7 @@ const handleLike = async (data, singlePerson) =>{
             className="swipe"
             key={person.name}
             preventSwipe={["up", "down"]}
-            onSwipe={(dir) => getLikesData(dir, person.name )}
+            onSwipe={(dir) => getLikesData(dir, person )}
           >
             <div
               style={{ backgroundImage: `url(${person.url})` }}
@@ -66,8 +64,6 @@ const handleLike = async (data, singlePerson) =>{
             >
               <Paper className="paper">
                 <h3>{person.name}</h3>
-                <h2>Latest game: </h2>
-                <h1>{person.latestGame}</h1>
                 <h2>{person.bio}</h2>
               </Paper>
               

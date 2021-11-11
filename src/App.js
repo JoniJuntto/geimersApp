@@ -9,6 +9,7 @@ import MatchPage from './MatchPage';
 import CreateProfile from './CreateProfile'
 import LoginOrSignup from './LoginOrSignup';
 import LoggedOut from './LoggedOut';
+import Profile from './Profile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/match" component={MatchPage}  />
           <Route path="/loggedout" component={LoggedOut} />
           <Route path="/create" component={CreateProfile} />
+          <Route path="/ownProfile" component={Profile} />
           
         </Switch>
       </Router>

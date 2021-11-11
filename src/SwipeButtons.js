@@ -10,24 +10,17 @@ import DoneIcon from '@mui/icons-material/Done';
 const SwipeButtons = () => {
 
     const history = useHistory();
-    const handleHome = () => history.push('/home');
     const handleTrending = () => history.push('/trending');
-    const handleSettings = () => history.push('/settings');
+    const handleSettings = () => history.push('/profile');
     const handleMatch = ()=> history.push('/match');
 
   return (
     <div className="swipeButtons">
-      <IconButton className="swipeButtons__left" onClick={handleHome}>
-        <ClearIcon fontSize="large" />
-      </IconButton>
       <IconButton className="swipeButtons__lightning" onClick={handleTrending}>
         <SportsEsportsIcon fontSize="large" />
       </IconButton>
       <IconButton className="swipeButtons__right" onClick={handleSettings}>
         <SettingsIcon fontSize="large" />
-      </IconButton>
-      <IconButton className="swipeButtons__right" onClick={handleMatch}>
-        <DoneIcon fontSize="large" />
       </IconButton>
 
     </div>

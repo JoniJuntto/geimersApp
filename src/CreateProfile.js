@@ -1,23 +1,21 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { collection, addDoc, setDoc, doc, getDoc } from "@firebase/firestore";
-import db from './firebase';
+import React, { useState } from "react";
+import { setDoc, doc } from "@firebase/firestore";
 import { Link } from "react-router-dom";
-import { signup, useAuth, logout, login } from "./firebase";
+import { useAuth, db } from "./firebase";
 
 export default function CreateProfile() {
     const currentUser = useAuth();
     const [name, setName] = useState('');
-    const [url, setUrl] = useState('https://st2.depositphotos.com/5682790/10456/v/600/depositphotos_104564156-stock-illustration-male-user-icon.jpg');
+    const [url, setUrl] = useState('');
     const [latestGame, setLatestGame] = useState('');
     const [bio, setBio] = useState('');
-    const [person, setPerson] = useState([]);
     const photos = [
         "https://st2.depositphotos.com/5682790/10456/v/600/depositphotos_104564156-stock-illustration-male-user-icon.jpg",
         "https://images.unsplash.com/photo-1507457379470-08b800bebc67?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWluZyUyMGxvZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "https://images.unsplash.com/photo-1492044715545-15ddedd84e5e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWluZyUyMGxvZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
 
-    ]
+    ];
 
     const handleNameChange = e => {
         setName(e.target.value)
@@ -45,6 +43,7 @@ export default function CreateProfile() {
         await setDoc(docReflikes, payloadLikes);
         const docRef = doc(db, "users", currentUser.uid);
         const payload = {
+            id:currentUser.uid,
             bio: bio,
             latestGame: latestGame,
             name: name,
@@ -84,7 +83,6 @@ export default function CreateProfile() {
                     </div>
                 ))}
             </div>
-
 
             <Link to="/home">
                 <Button onClick={handleNew}>Submit</Button>

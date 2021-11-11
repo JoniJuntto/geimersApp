@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+import HeaderNoLink from './HeaderNoLink';
 
 export default function LoggedOut(){
     return(
         <div>
-            <Header />
+            <HeaderNoLink />
             <p>Thank you for visiting! Youre now logged out</p>
             <Link to='/'>
                 <button >Go back to login</button>

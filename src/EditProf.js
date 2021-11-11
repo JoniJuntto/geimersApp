@@ -1,9 +1,9 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { collection, addDoc, setDoc, doc, getDoc } from "@firebase/firestore";
-import db from './firebase';
+import React, { useState } from "react";
+import { setDoc, doc, getDoc } from "@firebase/firestore";
+import {db} from './firebase';
 import { Link } from "react-router-dom";
-import { signup, useAuth, logout, login } from "./firebase";
+import { useAuth } from "./firebase";
 import Header from "./Header";
 
 export default function EditProf() {
@@ -13,7 +13,12 @@ export default function EditProf() {
     const [latestGame, setLatestGame] = useState('');
     const [bio, setBio] = useState('');
     const [person, setPerson] = useState([]);
-    const newPenis = "hehehe";
+    const photos = [
+        "https://st2.depositphotos.com/5682790/10456/v/600/depositphotos_104564156-stock-illustration-male-user-icon.jpg",
+        "https://images.unsplash.com/photo-1507457379470-08b800bebc67?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWluZyUyMGxvZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1492044715545-15ddedd84e5e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWluZyUyMGxvZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+
+    ];
 
     const handleNameChange = e => {
         setName(e.target.value)
@@ -57,6 +62,12 @@ export default function EditProf() {
         await setDoc(docRef, payload);
     }
 
+    const pickedPhoto = (photo) => {
+        console.log("picked")
+        console.log(photo)
+        setUrl(photo);
+    }
+
 
     return (
         <div>
@@ -64,13 +75,24 @@ export default function EditProf() {
             <h1>Update profile</h1>
             <h1>Name</h1>
             <TextField value={name} variant='outlined' onChange={handleNameChange} />
-            <h1>Photo url</h1>
-            <TextField value={url} variant='outlined' onChange={handleUrlChange} />
             <h1>Favorite game</h1>
             <TextField value={latestGame} variant='outlined' onChange={handleGameChange} />
             <h1>Biography</h1>
             <TextField value={bio} variant='outlined' onChange={handleBioChange} />
             <h1></h1>
+            <h1>Pick a photo</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
+                {photos.map((photo) => (
+                    <div>
+                        <div
+                            style={{ height: 50, width: 50, backgroundImage: `url(${photo})`, display: 'flex' }}
+                            className="card"
+                        >
+                        </div>
+                        <button onClick={() => pickedPhoto(photo)}>pick this</button>
+                    </div>
+                ))}
+            </div>
             <Link to="/home">
                 <Button onClick={handleNew}>Submit</Button>
             </Link>

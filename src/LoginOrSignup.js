@@ -1,22 +1,16 @@
-import { async } from '@firebase/util';
 import React, {useRef, useState} from 'react';
 import { signup, useAuth, logout, login } from "./firebase";
-import { collection, addDoc, setDoc, doc } from "@firebase/firestore";
-import db from './firebase';
 import { Link } from "react-router-dom";
-import Header from './Header';
+import HeaderNoLink from './HeaderNoLink';
+import ModalLogin from './ModalLogin';
 
 export default function LoginOrSignup(){
 
     const [loading, setLoading] = useState(false);
     const currentUser = useAuth();
-    const [name, setName] = useState('');
-    const [url, setUrl] = useState('https://st2.depositphotos.com/5682790/10456/v/600/depositphotos_104564156-stock-illustration-male-user-icon.jpg');
-    const [latestGame, setLatestGame] = useState('');
-    const [bio, setBio] = useState('');
-
     const emailRef = useRef();
     const passwordRef = useRef();
+    
 
 
     const handleSignUp = async () =>{
@@ -52,7 +46,8 @@ export default function LoginOrSignup(){
 
     return(
         <div id='main'>
-            <Header />
+            <HeaderNoLink />
+            <ModalLogin />
             {/* THIS IS HOW I GET USER ID */}
             <div id='fields'>
                 <input ref={emailRef} placeholder='Email' />

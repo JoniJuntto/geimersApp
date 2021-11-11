@@ -6,18 +6,21 @@ import IconButton from "@material-ui/core/IconButton";
 import { useHistory } from "react-router-dom";
 import logo from './assets/logo.png';
 import { Link } from "react-router-dom";
+import GroupIcon from '@mui/icons-material/Group';
+import { Typography } from "@mui/material";
 
 function Header( ) {
   
   const history = useHistory();
   const handleChat = () => history.push('/chat');
-  const handleProfile = () => history.push('/profile');
+  const handleProfile = () => history.push('/ownProfile');
 
 
   return (
     <div className="header">
         <IconButton onClick={handleProfile}>
           <PersonIcon className="header__icon" fontSize="large" />
+          <Typography variant='h6' >Profiili</Typography>
         </IconButton>
         <Link to='/home'>
       <img
@@ -27,7 +30,8 @@ function Header( ) {
         />
         </Link>
         <IconButton onClick={handleChat}>
-          <ForumIcon className="header__icon" fontSize="large" />
+          <GroupIcon className="header__icon" fontSize="large" />
+          <Typography variant='h6' >Kaverit</Typography>
         </IconButton>
     </div>
   );

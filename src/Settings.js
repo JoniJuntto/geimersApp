@@ -1,6 +1,6 @@
 import { onSnapshot, collection } from "@firebase/firestore";
 import React, { useState, useEffect } from "react";
-import db from "./firebase";
+import {db} from "./firebase";
 
 export default function Settings() {
 
