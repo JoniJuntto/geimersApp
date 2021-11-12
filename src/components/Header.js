@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import GroupIcon from '@mui/icons-material/Group';
 import { Typography } from "@mui/material";
 import ModalLogin from "./ModalLogin";
-import { Button } from "@material-ui/core";
 import {logout} from '../firebase';
 
 function Header( ) {
@@ -19,15 +18,7 @@ function Header( ) {
   const handleProfile = () => history.push('/ownProfile');
 
 
-  const logoutF = async () =>{
-    try {
-      await logout();
-      history.push('/loggedout')
-    } catch (error) {
-      
-    }
-    
-  }
+
 
 
   return (
@@ -36,7 +27,11 @@ function Header( ) {
           <PersonIcon className="header__icon" fontSize="large" />
           <Typography variant='h6' >Profiili</Typography>
         </IconButton>
-        <Button onClick={logoutF}>Kirjaudu ulos</Button>
+
+        <div style={{
+                position: 'absolute', left: '50%',
+                transform: 'translate(-50%, -50%)'
+            }}>
         <Link to='/home'>
       <img
           className="header__logo"
@@ -44,7 +39,7 @@ function Header( ) {
           alt="Geimers logo"
         />
         </Link>
-        <ModalLogin />
+        </div>
         <IconButton onClick={handleChat}>
           <GroupIcon className="header__icon" fontSize="large" />
           <Typography variant='h6' >Kaverit</Typography>

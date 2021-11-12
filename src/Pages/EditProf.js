@@ -5,6 +5,9 @@ import {db} from '../firebase';
 import { Link } from "react-router-dom";
 import { useAuth } from "../firebase";
 import Header from "../components/Header";
+import {logout} from '../firebase';
+import { useHistory } from "react-router-dom";
+
 
 export default function EditProf() {
     const currentUser = useAuth();
@@ -19,6 +22,17 @@ export default function EditProf() {
         "https://images.unsplash.com/photo-1492044715545-15ddedd84e5e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWluZyUyMGxvZ298ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
 
     ];
+    const history = useHistory();
+
+    const logoutF = async () =>{
+        try {
+          await logout();
+          history.push('/loggedout')
+        } catch (error) {
+          
+        }
+        
+      }
 
     const handleNameChange = e => {
         setName(e.target.value)
@@ -72,6 +86,7 @@ export default function EditProf() {
     return (
         <div>
             <Header />
+            <Button onClick={logoutF}>Kirjaudu ulos</Button>
             <h1>Update profile</h1>
             <h1>Name</h1>
             <TextField value={name} variant='outlined' onChange={handleNameChange} />
