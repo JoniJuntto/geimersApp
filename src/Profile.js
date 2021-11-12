@@ -68,14 +68,17 @@ export default function Profile() {
                     <Box style={{}}>
                         <NotificationsActiveIcon />
                         <Typography variant='h5'>Ilmoitukset</Typography>
-                        <div>{notifs.map((noti)=>(
+                        <div>{!notifs
+                        ? notifs.map((noti)=>(
                             <Paper>{noti}</Paper>
-                        ))}
+                        ))
+                        :<Typography >Ei uusia ilmoituksia</Typography>
+                        }
                         </div>
                         <SportsEsportsIcon />
                         <Typography variant='h5' style={{ margin: 10 }}>Lempi peli: {person.latestGame}</Typography>
                         <GroupIcon />
-                        <Typography variant='h5'>Kavereita</Typography>
+                        <Typography variant='h5'>Kavereita: 100</Typography>
                     </Box>
                 </Paper>
 

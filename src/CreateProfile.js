@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { setDoc, doc } from "@firebase/firestore";
 import { Link } from "react-router-dom";
 import { useAuth, db } from "./firebase";
+import { Avatar } from '@material-ui/core';
 
 export default function CreateProfile() {
     const currentUser = useAuth();
@@ -73,13 +74,8 @@ export default function CreateProfile() {
             <h1>Pick a photo</h1>
             <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
                 {photos.map((photo) => (
-                    <div>
-                        <div
-                            style={{ height: 50, width: 50, backgroundImage: `url(${photo})`, display: 'flex' }}
-                            className="card"
-                        >
-                        </div>
-                        <button onClick={() => pickedPhoto(photo)}>pick this</button>
+                    <div onClick={() => pickedPhoto(photo)}>
+                        <Avatar src={photo} style={{ width: '8em', height: '8em' }}/>
                     </div>
                 ))}
             </div>

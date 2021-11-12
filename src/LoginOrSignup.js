@@ -3,10 +3,16 @@ import { signup, useAuth, logout, login } from "./firebase";
 import { Link } from "react-router-dom";
 import HeaderNoLink from './HeaderNoLink';
 import ModalLogin from './ModalLogin';
+import CustomAlert from './CustomAlert';
 
 export default function LoginOrSignup(){
 
     const [loading, setLoading] = useState(false);
+    const [alertState, setAlertState] = useState({
+        open: false, 
+        textOnAlert: "",
+        severityOfAlert: 'success'
+    });
     const currentUser = useAuth();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -47,7 +53,7 @@ export default function LoginOrSignup(){
     return(
         <div id='main'>
             <HeaderNoLink />
-            <ModalLogin />
+            <ModalLogin alertState = {alertState} setAlertState={setAlertState}/>
             {/* THIS IS HOW I GET USER ID */}
             <div id='fields'>
                 <input ref={emailRef} placeholder='Email' />

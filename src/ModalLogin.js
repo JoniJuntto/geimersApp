@@ -53,7 +53,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ModalLogin() {
+export default function ModalLogin(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -80,10 +80,10 @@ export default function ModalLogin() {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Login handleClose={handleClose}/>
+              <Login alertState = {props.alertState} setAlertState={props.setAlertState} handleClose={handleClose}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <SignUp handleClose={handleClose}/>
+              <SignUp alertState = {props.alertState} setAlertState={props.setAlertState} handleClose={handleClose}/>
             </TabPanel>
           </Box>
         </Box>

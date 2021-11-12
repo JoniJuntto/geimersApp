@@ -1,19 +1,50 @@
 import { Button, TextField } from '@material-ui/core';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
+import { signup } from "./firebase";
+import CustomAlert from './CustomAlert'
+import { useHistory } from "react-router-dom";
 
-export default function SignUp({handleClose}){
-
+export default function SignUp(props){
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmpassword] = useState('');
+    const history = useHistory();
 
-    const handleSubmit = () =>{
+    const handleSubmit = async () =>{
+        if(password !== confirmPassword){
+             props.setAlertState({
+                 open: true,
+                 textOnAlert: "Passwords don't match",
+                 severityOfAlert: 'error'
+             })
+             return;
+        }
+        setLoading(true)
+        try {
+            await signup(email, password);
+            props.setAlertState({
+                open: true,
+                textOnAlert: "Signup success",
+                severityOfAlert: 'success'
+            })
+            history.push('/create');
 
+        } catch(error) {
+            props.setAlertState({
+                open: true,
+                textOnAlert: error.message,
+                severityOfAlert: 'error'
+            });
+            return;
+        }
+        setLoading(false);
     }
 
     return(
         <Box p={3} style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+            <CustomAlert alertState={props.alertState} setAlertState={props.setAlertState}/>
             <TextField 
             variant='outlined'
             type='email'
