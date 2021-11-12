@@ -1,7 +1,7 @@
 import React from "react";
-import Header from './Header';
-import SwipeButtons from './SwipeButtons';
-import TinderCards from './TinderCards';
+import Header from '../components/Header';
+import SwipeButtons from '../components/SwipeButtons';
+import TinderCards from '../components/TinderCards';
 
 
 export default function Home(){

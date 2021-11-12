@@ -1,9 +1,9 @@
 import React from 'react';
-import Warzone from './assets/warzone.png'
-import Minecraft from './assets/minecraft.png'
-import gta from './assets/gta.png'
+import Warzone from '../assets/warzone.png'
+import Minecraft from '../assets/minecraft.png'
+import gta from '../assets/gta.png'
 import { Card, Typography, Grid, CardContent, makeStyles } from '@material-ui/core';
-import Header from './Header';
+import Header from '../components/Header';
 
 const useStyles = makeStyles({
   root: {

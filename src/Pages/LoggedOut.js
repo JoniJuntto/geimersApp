@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import HeaderNoLink from './HeaderNoLink';
+import HeaderNoLink from '../components/HeaderNoLink';
 
 export default function LoggedOut(){
     return(

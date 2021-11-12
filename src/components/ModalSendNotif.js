@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import { useAuth, db } from "./firebase";
+import { useAuth, db } from "../firebase";
 import { doc, getDoc, setDoc } from "@firebase/firestore";
 const style = {
     position: 'absolute',

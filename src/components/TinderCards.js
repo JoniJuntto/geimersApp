@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
 import { Paper } from '@material-ui/core';
-import { useAuth,db } from "./firebase";
+import { useAuth,db } from "../firebase";
 import { collection, setDoc, doc, getDoc, onSnapshot } from "@firebase/firestore";
 
 function TinderCards() {

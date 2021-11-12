@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import Login from './Login';
-import SignUp from './Signup';
+import LogOut from '../components/LogOut'
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -63,31 +63,28 @@ export default function ModalLogin(props) {
   };
 
   return (
-    <div>
-      <Button onClick={handleOpen}>login</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label="Tst">
-                <Tab label="Login" {...a11yProps(0)} />
-                <Tab label="Sign up" {...a11yProps(1)} />
-              </Tabs>
+      <div>
+        <Button onClick={handleOpen}>login</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label="Tst">
+                  <Tab label="Login" {...a11yProps(0)} />
+                  <Tab label="Sign up" {...a11yProps(1)} />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index={0}>
+                <LogOut  handleClose={handleClose} />
+              </TabPanel>
             </Box>
-            <TabPanel value={value} index={0}>
-              <Login alertState = {props.alertState} setAlertState={props.setAlertState} handleClose={handleClose}/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <SignUp alertState = {props.alertState} setAlertState={props.setAlertState} handleClose={handleClose}/>
-            </TabPanel>
           </Box>
-        </Box>
-      </Modal>
-    </div>
+        </Modal>
+      </div>
   );
 }

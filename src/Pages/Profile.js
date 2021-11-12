@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "@firebase/firestore";
-import { useAuth, db } from "./firebase";
-import Header from "./Header";
+import { useAuth, db } from "../firebase";
+import Header from "../components/Header";
 import { Avatar, Paper, Typography, Box, Divider } from '@material-ui/core';
-import Person from "@material-ui/icons/Person";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import GroupIcon from '@mui/icons-material/Group';

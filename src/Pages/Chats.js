@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, setDoc } from "@firebase/firestore";
-import { useAuth, db } from "./firebase";
-import Header from "./Header";
+import { useAuth, db } from "../firebase";
+import Header from "../components/Header";
 import { Paper } from '@material-ui/core';
 import { Typography, Avatar, Divider, Button } from "@mui/material";
-import ModalSendNotif from "./ModalSendNotif";
+import ModalSendNotif from "../components/ModalSendNotif";
 
 export default function Profile() {
     const currentUser = useAuth();
