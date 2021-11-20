@@ -5,13 +5,13 @@ import {Button} from '@material-ui/core';
 import ModalLogin from "./ModalLogin";
 
 
-function Header( ) {
+function HeaderHome( ) {
 
 
 
   return (
-      <div className="header">
-        <Button variant='contained' color="secondary" >Kirjaudu ulos</Button>
+      <div>
+        
       <img
           className="header__logo"
           src={logo}
@@ -21,9 +21,9 @@ function Header( ) {
             transform: 'translate(-50%, 10%)'
         }}
         />
-        <ModalLogin />
+
     </div>
   );
 }
 
-export default Header;
+export default HeaderHome;

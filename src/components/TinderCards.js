@@ -9,6 +9,7 @@ function TinderCards() {
   const [people, setPeople] = useState([]);
   const currentUser = useAuth();
 
+
   useEffect(
     () =>
         onSnapshot(collection(db, "users"), (snapshot) =>

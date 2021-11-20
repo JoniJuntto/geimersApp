@@ -65,7 +65,7 @@ export default function ModalLogin(props) {
 
   return (
       <div>
-        <Button onClick={handleOpen}>login</Button>
+        <Button variant='contained' color="success" onClick={handleOpen}>login</Button>
         <Modal
           open={open}
           onClose={handleClose}

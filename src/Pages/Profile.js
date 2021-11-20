@@ -47,7 +47,7 @@ export default function Profile() {
             console.log("Document data:", docSnap.data());
             const notificationArr = docSnap.data();
             const notifsArr = notificationArr.notifications;
-            console.log(notifsArr.msg[0])
+            console.log(notifsArr.msg)
             setNotifs(notifsArr.msg);
         } else {
             // doc.data() will be undefined in this case
@@ -82,7 +82,7 @@ export default function Profile() {
                     <Box style={{}}>
                         <NotificationsActiveIcon />
                         <Typography variant='h5'>Ilmoitukset</Typography>
-                        <div>{!notifs
+                        <div>{notifs
                         ? notifs.map((noti)=>(
                             <Paper>{noti}</Paper>
                         ))

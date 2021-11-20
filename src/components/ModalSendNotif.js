@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
+import { Alert, TextField } from '@mui/material';
 import { useAuth, db } from "../firebase";
 import { doc, getDoc, setDoc } from "@firebase/firestore";
+import CustomAlert from './CustomAlert';
+import { GeimerContext } from '../DataContext';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -65,22 +68,23 @@ export default function ModalSendNotif(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    const {alertOpen, setAlertOpen, alertText, setAlerText, alertSeverity, setAlertSeverity} = useContext(GeimerContext);
 
     const getUserNotifs = async (userId) => {
-        console.log("getting users notif data for user " + userId)
+        console.log("getting users notifications data for user " + userId)
         const docRef = doc(db, "userNotifs", userId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document likes data:", docSnap.data());
             const notifs = docSnap.data();
             console.log(notifs)
-            const senderIDArr = notifs.senderID;
-            const oldMessagesArr = notifs.msg;
+            const senderIDArr = notifs.notifications.senderID;
+            console.log(senderIDArr);
+            const oldMessagesArr = notifs.notifications.msg;
+            console.log(oldMessagesArr);
             setOldMessages(oldMessagesArr);
-            console.log(oldMessagesArr)
             setSenderIDs(senderIDArr);
-            console.log(senderIDArr)
+
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -89,30 +93,29 @@ export default function ModalSendNotif(props) {
 
     const handleNotif = async () => {
         handleClose()
-        alert("Viesti lähetetty!")
+        //Vaihdetaan tämä oikean näköiseen alertiin :)
+        alert("Viestisi on lähetetty")
         const likeID = props.like.id;
         getUserNotifs(likeID)
         const docRef = doc(db, "userNotifs", likeID);
         const uidU = currentUser.uid
         let payload;
-        if (senderIDs && oldMessages) {
+            console.log(senderIDs, oldMessages)
             payload = {
                 //mitä jos tyhänä array?
+                id: currentUser.uid,
                 notifications: {
                     senderID: [...senderIDs, uidU],
                     msg: [...oldMessages, message]
-
                 }
             }
-        } else {
-            payload = {
-                notifications: {
-                    senderID: uidU,
-                    msg: message
-                }
-            }
-        };
-        await setDoc(docRef, payload);
+        
+        try {
+            await setDoc(docRef, payload);
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
 

@@ -16,12 +16,24 @@ function App() {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertText, setAlerText] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("");
+  const [notifications, setNotifications] = useState([]);
 
   return (
     <div className="App">
       <Router>
         <Switch>
-          <GeimerContext.Provider value={{alertOpen, setAlertOpen, alertText, setAlerText, alertSeverity, setAlertSeverity }}>
+          <GeimerContext.Provider 
+          value={{
+            alertOpen, 
+            setAlertOpen, 
+            alertText, 
+            setAlerText, 
+            alertSeverity, 
+            setAlertSeverity,
+            notifications, 
+            setNotifications  
+            }}>
+
             <Route exact path="/" component={LoginOrSignup} />
             <Route path="/chat" component={Chats}/>
             <Route path="/home" component={Home}/>
@@ -36,5 +48,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

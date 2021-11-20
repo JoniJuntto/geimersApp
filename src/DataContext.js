@@ -1,4 +1,4 @@
-import React, {useContext, useState, createContext} from "react";
+import {createContext} from "react";
 
 export const GeimerContext = createContext("jeje"); 
 
