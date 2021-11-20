@@ -22,7 +22,12 @@ export function signup(email, password){
   createUserWithEmailAndPassword(auth, email, password);
 }
 export function login(email, password){
-  signInWithEmailAndPassword(auth, email, password);
+  try {
+    signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.log(error)
+  }
+
 }
 
 export function logout(){

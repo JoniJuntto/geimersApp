@@ -56,7 +56,7 @@ useEffect(() => {
           <PersonIcon className="header__icon" fontSize="large" />
           <Typography variant='h6' >Profiili</Typography>
           <div>{notifs.length > 1
-                        ? <NotificationsActiveIcon />
+                        ? <NotificationsActiveIcon color='error'/>
                         :<p></p>
                         }
                         </div>

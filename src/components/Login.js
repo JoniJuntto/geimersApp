@@ -28,6 +28,7 @@ export default function Login({handleClose}){
             setAlertOpen(true);
             setAlerText("Kirjautuminen onnistui, tervetuloa")
             setAlertSeverity("success")
+            console.log(result)
             history.push('/home');
 
         } catch(error) {
