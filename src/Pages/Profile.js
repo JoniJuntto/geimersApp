@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "@firebase/firestore";
+import { doc, getDoc, deleteDoc } from "@firebase/firestore";
 import { useAuth, db } from "../firebase";
 import Header from "../components/Header";
 import { Avatar, Paper, Typography, Box, Divider } from '@material-ui/core';
@@ -9,6 +9,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import {logout} from '../firebase';
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Profile() {
     const currentUser = useAuth();
@@ -66,6 +67,10 @@ export default function Profile() {
         }
     }, [currentUser]);
 
+    const deleteNotification = async (noti) =>{
+        alert("notification " + noti + " deleted")
+    }
+
     return (
         <div>
             <Header />
@@ -84,7 +89,10 @@ export default function Profile() {
                         <Typography variant='h5'>Ilmoitukset</Typography>
                         <div>{notifs
                         ? notifs.map((noti)=>(
-                            <Paper>{noti}</Paper>
+                            <Paper>
+                                <Typography variant='p'>{noti}</Typography>
+                                <DeleteIcon color='error'onClick={()=>deleteNotification(noti)}/>
+                                 </Paper>
                         ))
                         :<Typography >Ei uusia ilmoituksia</Typography>
                         }

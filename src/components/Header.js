@@ -13,10 +13,13 @@ import { Typography } from "@mui/material";
 import ModalLogin from "./ModalLogin";
 import {logout} from '../firebase';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 function Header( ) {
   const currentUser = useAuth();
   const [notifs, setNotifs] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(1);
   
   const history = useHistory();
   const handleChat = () => history.push('/chat');
@@ -33,6 +36,10 @@ function Header( ) {
         const notifsArr = notificationArr.notifications;
         console.log(notifsArr)
         setNotifs(notifsArr.msg);
+        for (let i = 0; i<notifsArr.msg.length; i++){
+          console.log(notifsArr.length)
+          setNotificationCount(notificationCount + 1);
+        }
     } else {
         // doc.data() will be undefined in this case
         setNotifs({
@@ -42,6 +49,7 @@ function Header( ) {
         console.log("No such document!");
     }
 }
+
 
 useEffect(() => {
     if (currentUser) {
@@ -56,7 +64,9 @@ useEffect(() => {
           <PersonIcon className="header__icon" fontSize="large" />
           <Typography variant='h6' >Profiili</Typography>
           <div>{notifs.length > 1
-                        ? <NotificationsActiveIcon color='error'/>
+                        ? <Badge badgeContent={notificationCount} color="primary">
+                            <MailIcon color="action" />
+                          </Badge>
                         :<p></p>
                         }
                         </div>
