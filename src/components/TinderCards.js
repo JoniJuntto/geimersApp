@@ -24,11 +24,9 @@ const getLikesData = async (direction, singlePerson) => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       handleLike(docSnap.data(), singlePerson);
   } else {
       // doc.data() will be undefined in this case
-      console.log("No such document!");
       alert('EI KÄYTTÄJÄÄ');
   }
 }else{
@@ -37,8 +35,16 @@ const getLikesData = async (direction, singlePerson) => {
 }
 
 const handleLike = async (data, singlePerson) =>{
-  console.log(data);
   const docRef = doc(db, "likes", currentUser.uid);
+    if(Object.keys(data).length === 0){
+      const payload = {
+        id: currentUser.uid,
+        liked:[
+          singlePerson
+        ]
+      }
+      await setDoc(docRef, payload);
+    }else{
         const payload = {
             //Here's the info of the other person
             id: currentUser.uid,
@@ -47,6 +53,8 @@ const handleLike = async (data, singlePerson) =>{
             ]
         };
         await setDoc(docRef, payload);
+      }
+        
 }
 
   return (

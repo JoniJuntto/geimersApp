@@ -90,7 +90,7 @@ export default function CreateProfile() {
 
     /* THIS IS HOW I GET THE USER DATA TO WORK <3 */
     const handleNew = async () => {
-        const docReflikes = doc(db, "likes", currentUser.uid);
+/*         const docReflikes = doc(db, "likes", currentUser.uid);
         const payloadLikes = {
             //Here's the info of the other person
             id: currentUser.uid,
@@ -98,7 +98,7 @@ export default function CreateProfile() {
                 "1."
             ]
         };
-        await setDoc(docReflikes, payloadLikes);
+        await setDoc(docReflikes, payloadLikes); */
         const docRef = doc(db, "users", currentUser.uid);
         const payload = {
             id: currentUser.uid,
