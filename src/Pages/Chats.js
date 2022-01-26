@@ -50,23 +50,28 @@ export default function Profile() {
 
 
     return (
-        <div>
-            <Header />
-            { <div className="tinderCards__cardContainer">
-                { <div>{likes.map((like) => (
-                    <div>
-                    <Paper className="paper" style={{margin: 40}}>
-                        <ModalSendNotif like={like}/>
-                        <Typography variant='h4'> {like.name}</Typography>
-                        <Avatar alt={like.name} src={like.url} style={{ width: '8em', height: '8em' }} />
-                        <Typography variant='h6'> {like.bio}</Typography>
-                    </Paper>
-                    <Divider />
-                    </div>
-                ))}
+        <div>{!likes
+            ?<div>
+                <h1>Hei!</h1>
+            </div>
+            :<div>
+                <Header />
+                { <div className="tinderCards__cardContainer">
+                    { <div>{likes.map((like) => (
+                        <div>
+                        <Paper className="paper" style={{margin: 40}}>
+                            <ModalSendNotif like={like}/>
+                            <Typography variant='h4'> {like.name}</Typography>
+                            <Avatar alt={like.name} src={like.url} style={{ width: '8em', height: '8em' }} />
+                            <Typography variant='h6'> {like.bio}</Typography>
+                        </Paper>
+                        <Divider />
+                        </div>
+                    ))}
+                    </div> }
                 </div> }
-            </div> }
-
-        </div>
+            </div>
+            }
+        </div>  
     );
 }
